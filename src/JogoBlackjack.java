@@ -6,6 +6,7 @@ public class JogoBlackjack {
     private Jogador dealer;
     private Scanner scanner;
 
+    //inicia o jogo
     public JogoBlackjack() {
         baralho = new Baralho();
         jogador = new Jogador("Jogador");
@@ -38,22 +39,24 @@ public class JogoBlackjack {
         }
     }
 
+    //limpa a mão dos jogadores
     private void novoJogo() {
         jogador.getMao().clear();
         dealer.getMao().clear();
         baralho = new Baralho();
 
-        // Deal initial cards
+        // Distribuição inicial das cartas
         jogador.addCarta(baralho.distribuirCarta());
         jogador.addCarta(baralho.distribuirCarta());
         dealer.addCarta(baralho.distribuirCarta());
         dealer.addCarta(baralho.distribuirCarta());
 
-        // Show initial hands
+        // Mostra as cartas iniciais na mãos
         System.out.println("Mão do Jogador: " + jogador.getMao());
+        System.out.println("Pontuação inicial do jogador: " + jogador.ValorMao());
         System.out.println("Mão do Dealer: " + dealer.getMao().get(0) + " e [carta oculta]");
 
-        // Player's turn
+        // Turno do jogador
         boolean jogadorContinua = true;
         while (jogadorContinua) {
             System.out.println("");
@@ -67,6 +70,7 @@ public class JogoBlackjack {
                 case 1:
                     jogador.addCarta(baralho.distribuirCarta());
                     System.out.println("Mão do Jogador: " + jogador.getMao());
+                    System.out.println("Pontuação total: " + jogador.ValorMao());
                     if (jogador.Estouro()) {
                         System.out.println("Você estourou! Dealer vence.");
                         return;
@@ -80,13 +84,13 @@ public class JogoBlackjack {
             }
         }
 
-        // Dealer's turn
+        // Turno do Dealer
         while (dealer.ValorMao() < 17) {
             dealer.addCarta(baralho.distribuirCarta());
         }
         System.out.println("Mão do Dealer: " + dealer.getMao());
 
-        // Determine winner
+        // Determina o vencedor
         if (dealer.Estouro() || jogador.ValorMao() > dealer.ValorMao()) {
             System.out.println("-----------------------------");
             System.out.println("-      Jogador vence!       -");
