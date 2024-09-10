@@ -4,14 +4,14 @@ public class JogoBlackjack {
     private Baralho baralho;
     private Jogador jogador;
     private Jogador dealer;
-    private Scanner scanner;
+    private Scanner sc;
 
     //inicia o jogo
     public JogoBlackjack() {
         baralho = new Baralho();
         jogador = new Jogador("Jogador");
         dealer = new Jogador("Dealer");
-        scanner = new Scanner(System.in);
+        sc = new Scanner(System.in);
     }
 
     public void iniciarJogo() {
@@ -21,15 +21,15 @@ public class JogoBlackjack {
             System.out.println("1. Iniciar novo jogo");
             System.out.println("2. Sair");
             System.out.print("Escolha uma opção: ");
-            int escolha = scanner.nextInt();
+            int op = sc.nextInt();
             System.out.println("");
 
-            switch (escolha) {
+            switch (op) {
                 case 1:
                     novoJogo();
                     break;
                 case 2:
-                    continuar = false;
+                   continuar = false;
                     System.out.println("Obrigado por jogar!");
                     break;
                 default:
@@ -43,9 +43,8 @@ public class JogoBlackjack {
     private void novoJogo() {
         jogador.getMao().clear();
         dealer.getMao().clear();
-        baralho = new Baralho();
 
-        // Distribuição inicial das cartas
+        // Distribuição inicial das cartas 
         jogador.addCarta(baralho.distribuirCarta());
         jogador.addCarta(baralho.distribuirCarta());
         dealer.addCarta(baralho.distribuirCarta());
@@ -63,7 +62,7 @@ public class JogoBlackjack {
             System.out.println("1. Pedir carta");
             System.out.println("2. Parar");
             System.out.print("Escolha uma opção: ");
-            int escolha = scanner.nextInt();
+            int escolha = sc.nextInt();
             System.out.println("");
 
             switch (escolha) {

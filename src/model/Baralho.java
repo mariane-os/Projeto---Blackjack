@@ -16,7 +16,6 @@ public class Baralho {
         Collections.shuffle(cartas);
     }
 
-    //o que é?
     public Carta distribuirCarta() {
         return cartas.remove(cartas.size() - 1);
     }
